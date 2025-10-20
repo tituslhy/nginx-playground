@@ -40,6 +40,16 @@ services:
     networks:
       - chainlit-net
     container_name: chainlit-3
+  
+  guardrail:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.guardrail
+    networks:
+      - chainlit-net
+    deploy:
+      replicas: 3
+
   nginx:
     image: nginx:latest
     container_name: nginx_proxy

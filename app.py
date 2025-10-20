@@ -4,9 +4,11 @@ import os
 
 import chainlit as cl
 import logging
+import httpx
 
 from src.on_chat_start import setup_agent
 from src.on_message import invoke_agent
+from utils.utils import get_container_info
 
 logging.basicConfig(
     level=logging.INFO,
@@ -14,16 +16,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-def get_container_info() -> str:
-    """Gets unique information about the container."""
-    hostname = socket.gethostname()
-    try:
-        ip_address = socket.gethostbyname(hostname)
-    except socket.gaierror:
-        ip_address = "N/A"
-    container_id = os.uname().nodename
-    return f"Served by Container:\n- **Hostname:** `{hostname}`\n- **Internal IP:** `{ip_address}`\n- **Container ID:** `{container_id}`"
-
+GUARDRAIL_URL = "http://nginx_proxy:8080/guardrail"
 #%%
 @cl.on_chat_start
 async def on_chat_start():
