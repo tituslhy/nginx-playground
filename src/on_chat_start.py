@@ -9,6 +9,8 @@ from llama_index.core.workflow import Context
 from llama_index.llms.openai import OpenAI
 from llama_index.tools.tavily_research import TavilyToolSpec
 
+_ = load_dotenv(find_dotenv())
+
 def setup_agent():
     llm = OpenAI(model="gpt-4o-mini")
     tavily_tool = TavilyToolSpec(api_key=os.getenv("TAVILY_API_KEY"))
