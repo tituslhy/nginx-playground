@@ -1,14 +1,45 @@
 services:
 
-  chainlit:
+  # chainlit:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/Dockerfile
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - chainlit-net
+  #   deploy:
+  #     replicas: 3
+  #     endpoint_mode: dnsrr # DNS round-robin
+  chainlit-1:
     build:
-      context: ./docker
+      context: .
+      dockerfile: docker/Dockerfile
     env_file:
       - .env
     networks:
       - chainlit-net
-    deploy:
-      replicas: 3
+    container_name: chainlit-1
+    
+  chainlit-2:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file:
+      - .env
+    networks:
+      - chainlit-net
+    container_name: chainlit-2
+    
+  chainlit-3:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file:
+      - .env
+    networks:
+      - chainlit-net
+    container_name: chainlit-3
   nginx:
     image: nginx:latest
     container_name: nginx_proxy
@@ -16,8 +47,6 @@ services:
       - "8080:8080"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - chainlit
     networks:
       - chainlit-net
   
@@ -26,8 +55,6 @@ services:
     ports:
       - "6006:6006"
       - "4317:4317"
-    depends_on:
-      - chainlit
     networks:
       - chainlit-net
       

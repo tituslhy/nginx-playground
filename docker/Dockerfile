@@ -15,5 +15,8 @@ RUN uv sync
 # Copy the rest of the application
 COPY .. .
 
-# Command to run the application
-CMD ["chainlit", "run", "app.py", "--host", "0.0.0.0", "--port", "8000"]
+# Add virtual environment bin to path
+ENV PATH="/app/.venv/bin:$PATH"
+
+# Activate the virtual environment first then run the chainlit app
+CMD ["chainlit", "run", "main.py", "--host", "0.0.0.0", "--port", "8000"]
