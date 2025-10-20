@@ -24,7 +24,6 @@ def get_container_info() -> str:
     container_id = os.uname().nodename
     return f"Served by Container:\n- **Hostname:** `{hostname}`\n- **Internal IP:** `{ip_address}`\n- **Container ID:** `{container_id}`"
 
-
 #%%
 @cl.on_chat_start
 async def on_chat_start():
@@ -36,7 +35,6 @@ async def on_message(message: cl.Message):
     
     container_info = get_container_info()
     logger.info(f"Container Info: {container_info}")
-    
-    with cl.Step(name=f"📦 {container_info}"):
-        response = await invoke_agent(message=message)
-        logger.info(f"Agent Response: {response}")
+    await cl.Message(name=f"📦 {container_info}").send()
+    response = await invoke_agent(message=message)
+    logger.info(f"Agent Response: {response}")

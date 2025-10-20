@@ -1557,6 +1557,7 @@ dependencies = [
     { name = "ipykernel" },
     { name = "llama-index" },
     { name = "llama-index-tools-tavily-research" },
+    { name = "openinference-instrumentation-llama-index" },
 ]
 
 [package.metadata]
@@ -1566,6 +1567,7 @@ requires-dist = [
     { name = "ipykernel", specifier = ">=7.0.1" },
     { name = "llama-index", specifier = ">=0.14.5" },
     { name = "llama-index-tools-tavily-research", specifier = ">=0.4.2" },
+    { name = "openinference-instrumentation-llama-index", specifier = ">=4.3.7" },
 ]
 
 [[package]]
@@ -1667,6 +1669,24 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/37/59/750c25a353260a72287e618b9ccabd57f02db6bfd571c6dbf132202abeff/openinference_instrumentation-0.1.40.tar.gz", hash = "sha256:3080785479793a56023806c71dccbc39418925947407667794c651f992f700a2", size = 23824, upload-time = "2025-10-10T03:48:48.606Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c2/fd/2b6ea9d95f3eb1deba10975a14b80d7fe79528258111771580a0437d4f44/openinference_instrumentation-0.1.40-py3-none-any.whl", hash = "sha256:d2e894f25addb1dfba563789213139876c5a01fca0a1fa8aa52a455a988a11d4", size = 29967, upload-time = "2025-10-10T03:48:46.518Z" },
+]
+
+[[package]]
+name = "openinference-instrumentation-llama-index"
+version = "4.3.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "openinference-instrumentation" },
+    { name = "openinference-semantic-conventions" },
+    { name = "opentelemetry-api" },
+    { name = "opentelemetry-instrumentation" },
+    { name = "opentelemetry-semantic-conventions" },
+    { name = "typing-extensions" },
+    { name = "wrapt" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d8/d0/70c5dd723b0ca9d85b9d12a3a3f707210c97d903656d627a9f948c0747bf/openinference_instrumentation_llama_index-4.3.7.tar.gz", hash = "sha256:5c5d814aae5814eb99bc766050d37b41277387cfd7569e9ee7b234f6dd24fc40", size = 60758, upload-time = "2025-10-15T10:14:48.09Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/8a/514aa552435f0719da2013b91a42a3983396b2a56fc00880e31c61110103/openinference_instrumentation_llama_index-4.3.7-py3-none-any.whl", hash = "sha256:ec6868db3d072a997a1ce72cd7c52f95b59b668aad87cec79f1cabb4a5012207", size = 28866, upload-time = "2025-10-15T10:14:46.922Z" },
 ]
 
 [[package]]

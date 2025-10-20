@@ -9,6 +9,9 @@ from llama_index.core.workflow import Context
 from llama_index.llms.openai import OpenAI
 from llama_index.tools.tavily_research import TavilyToolSpec
 
+from openinference.instrumentation.llama_index import LlamaIndexInstrumentor
+from phoenix.otel import register
+
 _ = load_dotenv(find_dotenv())
 
 def setup_agent():
@@ -23,3 +26,9 @@ def setup_agent():
     cl.user_session.set("agent", agent)
     cl.user_session.set("context", Context(agent))
     cl.user_session.set("memory", memory)
+    
+    ## Setup tracing
+    tracer_provider = register(
+        endpoint="http://phoenix:4317"
+    )
+    LlamaIndexInstrumentor().instrument(tracer_provider=tracer_provider)
