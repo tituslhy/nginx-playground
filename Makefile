@@ -14,3 +14,6 @@ down:
 
 simple_up:
 	docker compose up -d
+
+simple_build:
+	docker compose up -d --build

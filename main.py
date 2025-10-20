@@ -35,6 +35,6 @@ async def on_message(message: cl.Message):
     
     container_info = get_container_info()
     logger.info(f"Container Info: {container_info}")
-    await cl.Message(name=f"📦 {container_info}").send()
+    await cl.Message(content=f"📦 {container_info}").send()
     response = await invoke_agent(message=message)
     logger.info(f"Agent Response: {response}")
