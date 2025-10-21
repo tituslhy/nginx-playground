@@ -8,8 +8,8 @@ services:
       - .env
     networks:
       - chainlit-net
-    deploy:
-      replicas: 3
+    restart:
+      unless-stopped
 
   nginx:
     image: nginx:latest
@@ -20,6 +20,8 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
       - chainlit-net
+    restart:
+      unless-stopped
   
   phoenix:
     image: arizephoenix/phoenix:latest
@@ -28,6 +30,8 @@ services:
       - "4317:4317"
     networks:
       - chainlit-net
+    restart:
+      unless-stopped
       
 networks:
   chainlit-net:

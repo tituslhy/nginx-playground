@@ -1,10 +1,6 @@
 #%%
-import socket
-import os
-
 import chainlit as cl
 import logging
-import httpx
 
 from src.on_chat_start import setup_agent
 from src.on_message import invoke_agent
