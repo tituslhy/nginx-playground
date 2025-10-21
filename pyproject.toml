@@ -11,7 +11,5 @@ dependencies = [
     "ipykernel>=7.0.1",
     "llama-index>=0.14.5",
     "llama-index-tools-tavily-research>=0.4.2",
-    "ollama>=0.6.0",
     "openinference-instrumentation-llama-index>=4.3.7",
-    "uvicorn>=0.38.0",
 ]

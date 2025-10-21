@@ -1,6 +1,18 @@
 services:
 
-  # chainlit:
+  chainlit:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file:
+      - .env
+    networks:
+      - chainlit-net
+    deploy:
+      replicas: 3
+      # endpoint_mode: dnsrr # DNS round-robin
+
+  # chainlit-1:
   #   build:
   #     context: .
   #     dockerfile: docker/Dockerfile
@@ -8,47 +20,27 @@ services:
   #     - .env
   #   networks:
   #     - chainlit-net
-  #   deploy:
-  #     replicas: 3
-  #     endpoint_mode: dnsrr # DNS round-robin
-  chainlit-1:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-    env_file:
-      - .env
-    networks:
-      - chainlit-net
-    container_name: chainlit-1
+  #   container_name: chainlit-1
     
-  chainlit-2:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-    env_file:
-      - .env
-    networks:
-      - chainlit-net
-    container_name: chainlit-2
+  # chainlit-2:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/Dockerfile
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - chainlit-net
+  #   container_name: chainlit-2
     
-  chainlit-3:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-    env_file:
-      - .env
-    networks:
-      - chainlit-net
-    container_name: chainlit-3
-  
-  guardrail:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.guardrail
-    networks:
-      - chainlit-net
-    deploy:
-      replicas: 3
+  # chainlit-3:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/Dockerfile
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - chainlit-net
+  #   container_name: chainlit-3
 
   nginx:
     image: nginx:latest
