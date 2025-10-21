@@ -7,7 +7,7 @@ import logging
 import httpx
 
 from src.on_chat_start import setup_agent
-from src.on_message import invoke_agent
+from src.on_message import invoke_agent, invoke_guardrail
 from utils.utils import get_container_info
 
 logging.basicConfig(
@@ -25,9 +25,15 @@ async def on_chat_start():
 
 @cl.on_message
 async def on_message(message: cl.Message):
-    
-    container_info = get_container_info()
-    logger.info(f"Container Info: {container_info}")
-    await cl.Message(content=f"📦 {container_info}").send()
-    response = await invoke_agent(message=message)
-    logger.info(f"Agent Response: {response}")
+    response = invoke_guardrail(message=message)
+    if "unsafe" in response['response']:
+        await cl.Message(content=f"⚠️ Your message was flagged as unsafe by the guardrail model. Please modify your input and try again. Served by {response['served_by']}").send()
+        logger.warning(f"Unsafe message detected: {message.content}")
+        
+    else:
+        await cl.Message(content=f"⚠️ Your message has cleared the guardrail model. Proceeding to service query. Served by {response['served_by']}").send()
+        container_info = get_container_info()
+        logger.info(f"Container Info: {container_info}")
+        await cl.Message(content=f"📦 {container_info}").send()
+        response = await invoke_agent(message=message)
+        logger.info(f"Agent Response: {response}")

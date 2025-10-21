@@ -9,6 +9,28 @@ from llama_index.core.base.llms.types import (
     MessageRole
 )
 
+from ollama import AsyncClient
+
+from utils.utils import get_container_info
+
+async def invoke_guardrail(message: cl.Message) -> dict[str, str]:
+    info = get_container_info()
+    client = AsyncClient(host="http://nginx_proxy:8080/guardrail")
+    response = await client.chat(
+        model="llama-guard3",
+        messages = [
+            {
+                'role': 'user',
+                'content': message.content,
+            }
+        ]
+    )
+    return {
+        "response": response.message.content,
+        "served_by": info
+    }
+    
+
 async def invoke_agent(message: cl.Message) -> str:
     agent = cl.user_session.get("agent")
     memory = cl.user_session.get("memory")
