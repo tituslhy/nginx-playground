@@ -4,8 +4,10 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    env_file:
-      - .env
+    secrets:
+      - OPENAI_API_KEY
+      - TAVILY_API_KEY
+    
     networks:
       - chainlit-net
     restart:
@@ -32,7 +34,13 @@ services:
       - chainlit-net
     restart:
       unless-stopped
-      
+
+secrets:
+  OPENAI_API_KEY:
+    file: ./secrets/openai_api_key.txt
+  TAVILY_API_KEY:
+    file: ./secrets/tavily_api_key.txt
+
 networks:
   chainlit-net:
     driver: bridge

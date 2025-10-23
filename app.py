@@ -4,13 +4,15 @@ import logging
 
 from src.on_chat_start import setup_agent
 from src.on_message import invoke_agent
-from utils.utils import get_container_info
+from utils.utils import get_container_info, get_secrets
 
 logging.basicConfig(
     level=logging.INFO,
     format="[%(asctime)s] [%(levelname)s] [%(name)s] - %(message)s"
 )
 logger = logging.getLogger(__name__)
+
+get_secrets()
 
 #%%
 @cl.on_chat_start
