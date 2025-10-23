@@ -8,7 +8,19 @@ The nginx playground
 
 This repository is a companion resource to the Medium Article [Nginx: The Single-Server Swiss Army Knife](https://medium.com/@tituslhy/nginx-the-single-server-swiss-army-knife-3445197f8f86)
 
-## Spinning everything up
+## Converting Docker compose to helm chart
+Install [Kompose](https://kompose.io/installation/#macos). On MacOS, run:
+```
+brew install kompose
+```
+
+Then:
+```
+mkdir helm-from-kompose
+kompose convert --chart --out "helm-from-kompose" -f docker-compose.yml
+```
+
+## Spinning everything up in Docker
 ### If you have `Make` installed
 Simply run:
 ```
