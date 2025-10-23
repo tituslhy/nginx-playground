@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: kompose convert --chart --out helm -f docker-compose.yml
+    kompose.cmd: kompose convert --chart --out helm-from-kompose -f docker-compose.yml
     kompose.version: 1.37.0 (HEAD)
   labels:
     io.kompose.service: nginx

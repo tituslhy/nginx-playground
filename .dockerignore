@@ -3,3 +3,5 @@ images/
 chainlit.md
 .chainlit/
 .venv/
+secrets/
+.env

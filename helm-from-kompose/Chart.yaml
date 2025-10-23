@@ -1,8 +1,8 @@
-name: helm
-description: A generated Helm Chart for helm from Skippbox Kompose
+name: helm-from-kompose
+description: A generated Helm Chart for helm-from-kompose from Skippbox Kompose
 version: 0.0.1
 apiVersion: v2
 keywords:
-  - helm
+  - helm-from-kompose
 sources:
 home:

@@ -1,9 +1,0 @@
-apiVersion: v1
-data:
-  OPENAI_API_KEY: <actual_openai_api_key_printed_here!!>
-  TAVILY_API_KEY: <actual_tavily_api_key_printed_here!!>
-kind: ConfigMap
-metadata:
-  labels:
-    io.kompose.service: chainlit-env
-  name: env
