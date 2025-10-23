@@ -1,5 +1,7 @@
+.env
 images/
 .python-version
 chainlit.md
 .chainlit/
 .venv/
+secrets/
