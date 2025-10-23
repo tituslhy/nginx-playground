@@ -1,0 +1,40 @@
+apiVersion: v1
+data:
+  nginx.conf: |-
+    events {
+        worker_connections 1024;
+    }
+
+    http {
+
+        upstream chainlit_app {
+            server chainlit:8000;
+            least_conn;
+        }
+
+        server {
+            listen 8080;
+
+            location / {
+                proxy_pass http://chainlit_app;
+
+                # Set headers to pass necessary information to the Chainlit app
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+
+                # WebSocket support for Chainlit's interactive features
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+            }
+        }
+    }
+kind: ConfigMap
+metadata:
+  annotations:
+    use-subpath: "true"
+  labels:
+    io.kompose.service: nginx
+  name: nginx-cm0

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --chart --out helm -f docker-compose.yml
+    kompose.version: 1.37.0 (HEAD)
+  labels:
+    io.kompose.service: phoenix
+  name: phoenix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: phoenix
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert --chart --out helm -f docker-compose.yml
+        kompose.version: 1.37.0 (HEAD)
+      labels:
+        io.kompose.service: phoenix
+    spec:
+      containers:
+        - image: arizephoenix/phoenix:latest
+          name: phoenix
+          ports:
+            - containerPort: 6006
+              protocol: TCP
+            - containerPort: 4317
+              protocol: TCP
+      restartPolicy: Always

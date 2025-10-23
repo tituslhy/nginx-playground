@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --chart --out helm -f docker-compose.yml
+    kompose.version: 1.37.0 (HEAD)
+  labels:
+    io.kompose.service: phoenix
+  name: phoenix
+spec:
+  ports:
+    - name: "6006"
+      port: 6006
+      targetPort: 6006
+    - name: "4317"
+      port: 4317
+      targetPort: 4317
+  selector:
+    io.kompose.service: phoenix
