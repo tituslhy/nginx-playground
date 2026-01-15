@@ -22,7 +22,7 @@ spec:
           env:
             - name: PHOENIX_ENDPOINT
             {{- if .Values.phoenix.endpoint }}
-              value: {{ .Values.phoenix.endpoint | quote }}
+              value: "http://{{ .Values.phoenix.name }}:{{ .Values.phoenix.containerPort }}"
             {{- else }}
               value: "http://phoenix:4317"
             {{- end }}

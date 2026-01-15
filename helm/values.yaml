@@ -1,6 +1,5 @@
 phoenix:
   name: phoenix
-  endpoint: "http://phoenix:4317"
   image:
     repository: arizephoenix/phoenix
     tag: latest
