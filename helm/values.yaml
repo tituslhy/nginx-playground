@@ -1,0 +1,5 @@
+phoenix:
+  endpoint: "http://phoenix:4317"
+
+app:
+  replicas: 2

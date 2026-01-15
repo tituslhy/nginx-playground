@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  replicas: {{ .Values.app.replicas }}
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: tituslhy/search_agent:0.0.1
+          env:
+            - name: PHOENIX_ENDPOINT
+              value: {{ .Values.phoenix.endpoint | quote }}
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-secret
+                  key: api-key
+            - name: TAVILY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: tavily-secret
+                  key: api-key
+          imagePullPolicy: IfNotPresent
