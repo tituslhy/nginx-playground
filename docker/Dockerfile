@@ -6,7 +6,7 @@ WORKDIR /app
 # Install curl and uv
 RUN pip install uv
 
-# Copy requirements files
+# Copy requirements filesdo
 COPY ../pyproject.toml ../uv.lock ./
 
 # Install dependencies using uv
