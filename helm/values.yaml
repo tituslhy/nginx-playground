@@ -1,8 +1,13 @@
 phoenix:
+  name: phoenix
   endpoint: "http://phoenix:4317"
   image:
     repository: arizephoenix/phoenix
     tag: latest
+  containerPort: 4317
 
 app:
   replicas: 2
+  image: 
+    repository: tituslhy/search_agent
+    tag: 0.0.1

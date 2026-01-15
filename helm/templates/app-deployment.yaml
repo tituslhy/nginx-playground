@@ -3,7 +3,11 @@ kind: Deployment
 metadata:
   name: app
 spec:
+  {{- if .Values.app.replicas }}
   replicas: {{ .Values.app.replicas }}
+  {{- else }}
+  replicas: 1
+  {{- end }}
   selector:
     matchLabels:
       app: app
@@ -14,10 +18,14 @@ spec:
     spec:
       containers:
         - name: app
-          image: tituslhy/search_agent:0.0.1
+          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
           env:
             - name: PHOENIX_ENDPOINT
+            {{- if .Values.phoenix.endpoint }}
               value: {{ .Values.phoenix.endpoint | quote }}
+            {{- else }}
+              value: "http://phoenix:4317"
+            {{- end }}
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
