@@ -1,6 +1,4 @@
 # nginx-playground
-The nginx playground
-
 
 <p align="center">
     <img src="./images/nginx.png" height = 600px>
