@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phoenix
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: phoenix
+          image: "{{ .Values.phoenix.image.repository }}:{{ .Values.phoenix.image.tag }}"
+          ports:
+            - containerPort: 4317

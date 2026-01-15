@@ -1,5 +1,8 @@
 phoenix:
   endpoint: "http://phoenix:4317"
+  image:
+    repository: arizephoenix/phoenix
+    tag: latest
 
 app:
   replicas: 2
