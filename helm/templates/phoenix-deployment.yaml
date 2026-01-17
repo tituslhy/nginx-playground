@@ -3,7 +3,11 @@ kind: Deployment
 metadata:
   name: {{ .Values.phoenix.name }}
 spec:
+  {{- if .Values.phoenix.replicas }}
+  replicas: {{ .Values.phoenix.replicas }}
+  {{- else }}
   replicas: 1
+  {{- end }}  
   template:
     spec:
       containers:

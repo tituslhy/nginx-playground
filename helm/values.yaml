@@ -1,5 +1,6 @@
 phoenix:
   name: phoenix
+  replicas: 1
   image:
     repository: arizephoenix/phoenix
     tag: latest
