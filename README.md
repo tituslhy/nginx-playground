@@ -39,3 +39,8 @@ Tearing everything down:
 ```
 docker-compose down -v --remove-orphans
 ```
+
+### To build image
+```
+docker build -t <your_dockerhub_username>/search_agent:0.0.2 -f docker/Dockerfile .
+```
