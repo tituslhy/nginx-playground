@@ -60,3 +60,24 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "phoenix.name" -}}
+{{- default "phoenix" .Values.phoenix.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Create the labels for the phoenix service
+*/}}
+{{- define "phoenix.labels" -}}
+app.kubernetes.io/name: {{ include "phoenix.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Create selector labels for the phoenix service. Deliberately separated from
+phoenix.labels in case of future additions/edits
+*/}}
+{{- define "phoenix.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "phoenix.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

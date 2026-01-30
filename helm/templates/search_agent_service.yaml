@@ -7,6 +7,9 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
+  {{/*Leave this as the service's port. This is the port that clients actually see. 
+  The target port in search_agent_deployment.yaml is the actual containerPort of 
+  the service.*/}}
     - port: {{ .Values.service.port }}
       targetPort: http
       protocol: TCP

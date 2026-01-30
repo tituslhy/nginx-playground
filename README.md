@@ -44,3 +44,37 @@ docker-compose down -v --remove-orphans
 ```
 docker build -t <your_dockerhub_username>/search_agent:0.0.2 -f docker/Dockerfile .
 ```
+
+## Using Helm
+To pull subchart dependencies:
+```
+helm dependency update
+```
+
+To lint:
+```
+helm lint helm
+```
+
+To check templates:
+```
+helm template helm
+```
+
+## Creating secrets
+Run:
+```
+kubectl create secret generic postgres-creds \
+--from-literal=db-password='your_password'
+
+kubectl create secret generic tavily-secret \
+--from-literal=db-password='your_api_key'
+
+kubectl create secret generic openai-secret \
+--from-literal=OPENAI_API_KEY='your_api_key'
+```
+
+To check if the secrets were created:
+```
+kubectl get secrets
+```

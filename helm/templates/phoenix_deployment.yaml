@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "phoenix.name" . }}
+  labels:
+    {{- include "phoenix.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.phoenix.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "phoenix.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "phoenix.selectorLabels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "helm.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ include "phoenix.name" . }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ .Values.phoenix.image | quote }}
+          imagePullPolicy: {{ .Values.phoenix.pullPolicy }}
+          ports:
+            - name: ui
+              containerPort: {{ .Values.phoenix.ports.ui }}
+              protocol: TCP
+            - name: otlp
+              containerPort: {{ .Values.phoenix.ports.otlp }}
+              protocol: TCP
+          env:
+            - name: DB_HOST
+              value: "db"
+            - name: DB_PORT
+              value: "5432"
+            {{- with Values.postgresql.auth }}
+            - name: DB_USER
+              value: {{ .username }}
+            - name: DB_NAME
+              value: {{ .database }}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .existingSecret }}
+                  key: {{ .secretKeys.userPasswordKey }}
+            {{- end }}
+            - name: PHOENIX_SQL_DATABASE_URL
+              value: postgresql://$(DB_USER):$(DB_PASSWORD)@{{ $.Values.postgresql.fullnameOverride }}:5432/$(DB_NAME)
+          {{- with .Values.phoenix.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.phoenix.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
