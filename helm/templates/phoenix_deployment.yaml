@@ -50,7 +50,7 @@ spec:
               value: "db"
             - name: DB_PORT
               value: "5432"
-            {{- with Values.postgresql.auth }}
+            {{- with .Values.postgresql.auth }}
             - name: DB_USER
               value: {{ .username }}
             - name: DB_NAME
