@@ -68,7 +68,7 @@ kubectl create secret generic postgres-creds \
 --from-literal=db-password='your_password'
 
 kubectl create secret generic tavily-secret \
---from-literal=db-password='your_api_key'
+--from-literal=TAVILY_API_KEY='your_api_key'
 
 kubectl create secret generic openai-secret \
 --from-literal=OPENAI_API_KEY='your_api_key'
