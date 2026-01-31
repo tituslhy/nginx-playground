@@ -49,12 +49,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: openai-secret
-                  key: OPENAI_API_KEY
+                  key: api-key
             - name: TAVILY_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: tavily-secret
-                  key: TAVILY_API_KEY
+                  key: api-key
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
