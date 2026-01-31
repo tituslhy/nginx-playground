@@ -106,8 +106,17 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    # for websocket sticky sessions
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "route"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "3600"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "3600"    
   hosts:
     - host: chainlit.local
+      paths:
+        - path: /
+          pathType: Prefix
+    - host: localhost
       paths:
         - path: /
           pathType: Prefix
@@ -177,7 +186,8 @@ autoscaling:
   enabled: true
   minReplicas: 2
   maxReplicas: 3
-  targetCPUUtilizationPercentage: 80
+  targetCPUUtilizationPercentage: 50
+  # targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.

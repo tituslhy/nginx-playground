@@ -21,6 +21,16 @@ minikube start
 minikube addons enable ingress
 ```
 
+To check if ingress is running:
+```
+minikube addons list | grep nginx
+```
+
+To check if nginx pod is running:
+```
+kubectl get pods -n ingress-nginx
+```
+
 Note: The ingress controller runs at 192.168.49.2 in this cluster.
 Keep a terminal open for minikube tunnel if using LoadBalancer services in the future.
 
