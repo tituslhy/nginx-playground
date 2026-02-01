@@ -1,10 +1,14 @@
 # nginx-playground
 
-<p align="center">
-    <img src="./images/nginx.png" height=600px>
-</p>
+<table border="0">
+  <tr>
+    <td><img src="./images/nginx.png" height="600px"></td>
+    <td><img src="./images/helm_chart_banner.png" height="600px"></td>
+  </tr>
+</table>
 
-This repository demonstrates NGINX reverse proxy patterns and Kubernetes ingress configuration. It's a companion resource to the Medium article [Nginx: The Single-Server Swiss Army Knife](https://medium.com/@tituslhy/nginx-the-single-server-swiss-army-knife-3445197f8f86).
+This repository demonstrates NGINX reverse proxy patterns and Kubernetes ingress configuration. It's a companion resource to the Medium articles:
+1. [Nginx: The Single-Server Swiss Army Knife](https://medium.com/@tituslhy/nginx-the-single-server-swiss-army-knife-3445197f8f86).
 
 The project includes:
 - **Chainlit**: GenAI chat interface with WebSocket streaming
