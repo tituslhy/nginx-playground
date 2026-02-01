@@ -9,6 +9,7 @@
 
 This repository demonstrates NGINX reverse proxy patterns and Kubernetes ingress configuration. It's a companion resource to the Medium articles:
 1. [Nginx: The Single-Server Swiss Army Knife](https://medium.com/@tituslhy/nginx-the-single-server-swiss-army-knife-3445197f8f86).
+2. [Helm Charts: The Multi-Server Orchestra Conductor](https://medium.com/@tituslhy/helm-charts-the-multi-server-orchestra-conductor-18dc88665fc1)
 
 The project includes:
 - **Chainlit**: GenAI chat interface with WebSocket streaming
