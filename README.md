@@ -2,12 +2,27 @@
 
 <table border="0">
   <tr>
-    <td><img src="./images/nginx.png" height="600px"></td>
-    <td><img src="./images/helm_chart_banner.png" height="600px"></td>
+    <td><img src="./images/nginx.png" height="600px" alt="NGINX Banner"></td>
+    <td><img src="./images/helm_chart_banner.png" height="600px" alt="Helm Banner"></td>
   </tr>
 </table>
 
-This repository demonstrates NGINX reverse proxy patterns and Kubernetes ingress configuration. It's a companion resource to the Medium articles:
+# 🚀 nginx-playground
+
+Technology Stack:
+| Layer | Role | Tools |
+|------|------|--------|
+| 🎨 Frontend | User interface layer | <img src="https://img.shields.io/badge/Chainlit-Frontend-blue?style=for-the-badge" /> |
+| 🧠 Orchestration | Agent flow, RAG, tool routing, memory coordination | <img src="https://img.shields.io/badge/LlamaIndex-Orchestration-green?style=for-the-badge" /> |
+| 🤖 Model Layer | Core reasoning / LLM inference | <img src="https://img.shields.io/badge/OpenAI-LLM-black?style=for-the-badge&logo=openai" /> |
+| 🔎 Tooling | External search / knowledge augmentation | <img src="https://img.shields.io/badge/Tavily_AI-Search-orange?style=for-the-badge" /> |
+| 🚀 Infrastructure | Deployment, runtime, scaling | ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white) ![Helm](https://img.shields.io/badge/helm-%230F1689.svg?style=for-the-badge&logo=helm&logoColor=white) ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white) |
+| 🔁 CI / Review | PR review automation & code quality checks | <img src="https://img.shields.io/badge/CodeRabbit-PR_Review-red?style=for-the-badge" /> |
+| 📚 Documentation | AI-assisted documentation & writing support | ![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=claude&logoColor=white) |
+
+---
+
+This repository demonstrates **NGINX reverse proxy patterns** and **Kubernetes ingress configuration**. It's a companion resource to the Medium articles:
 1. [Nginx: The Single-Server Swiss Army Knife](https://medium.com/@tituslhy/nginx-the-single-server-swiss-army-knife-3445197f8f86).
 2. [Helm Charts: The Multi-Server Orchestra Conductor](https://medium.com/@tituslhy/helm-charts-the-multi-server-orchestra-conductor-18dc88665fc1)
 
