@@ -7,9 +7,8 @@
   </tr>
 </table>
 
-# 🚀 nginx-playground
-
 Technology Stack:
+
 | Layer | Role | Tools |
 |------|------|--------|
 | 🎨 Frontend | User interface layer | <img src="https://img.shields.io/badge/Chainlit-Frontend-blue?style=for-the-badge" /> |
